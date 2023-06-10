@@ -1,0 +1,40 @@
+task - mount s3 bucket on ec2 instance by using ubantu
+
+1.create 1 instance > select ubantu AMI image > click on the launch  
+ > select instance > connect > goto the connect option
+2.in ubantu,
+  type, $sudo su -
+3.#apt-get update -y
+4.#apt-get install s3fs awscli
+
+5.create s3 bucket > upload one file
+6.goto iam user > add user > create user with programatic access > attach existing policy > give amazons3fullaccess permission to user.
+
+7.then goto ubantu
+8.#mkdir /shweta/
+9.#touch /etc/passwd-s3fs
+10.#chmod 600 /etc/passwd-s3fs
+
+11.#vim /etc/passwd-s3fs
+  (mention access key & secret access key)
+   access key:secret access key
+
+12.#vim /etc/fuse.conf
+   user_allow other -----(uncomment this line)
+
+13.#vim /etc/fstab
+   s3fs#bucket name   /shweta   fuse   _netdev,allow_other  0  0 ------(add this line)
+
+14.#mount -a
+15.#df -Th /shweta/
+16.#cd /shweta/
+17.#ls
+18.#cp service.image.png /root/
+19.#cd 
+20.#ls
+21.#touch file {1..12}.txt
+22.#ls file{1..12}.txt
+23.#cp file{1..12}.txt /shweta/
+
+now goto s3 bucket and check the files...    
+
