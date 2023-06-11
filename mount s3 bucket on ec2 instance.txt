@@ -1,6 +1,6 @@
-task - mount s3 bucket on ec2 instance by using ubantu
+task - mount s3 bucket on ec2 instance
 
-1.create 1 instance > select ubantu AMI image > click on the launch  
+1.launch instance > select ubantu AMI image > create instance 
  > select instance > connect > goto the connect option
 2.in ubantu,
   type, $sudo su -
@@ -34,7 +34,10 @@ task - mount s3 bucket on ec2 instance by using ubantu
 20.#ls
 21.#touch file {1..12}.txt
 22.#ls file{1..12}.txt
+  file1.txt  file2.txt  file3.txt  file4.txt  file5.txt  file6.txt
+  file7.txt  file8.txt  file9.txt  file10.txt file11.txt file12.txt
+
 23.#cp file{1..12}.txt /shweta/
 
-now goto s3 bucket and check the files...    
+now goto s3 bucket and check the files in s3 bucket...    
 
