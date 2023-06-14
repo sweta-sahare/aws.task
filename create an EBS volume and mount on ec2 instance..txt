@@ -16,7 +16,8 @@ task- create an EBS volume and mount on ec2 instance.
 
 7. select new volume > action > attach volume
 
-8. type lsblk (it will list out all the volume)
+8. goto ec2 instance connect,
+   type lsblk (it will list out all the volume)
 
 9. file -s /dev/xvdf (to check file system)
 
