@@ -2,12 +2,12 @@ task- create an EBS volume and mount on ec2 instance.
 
 1. goto ec2 > launch instance
 
-2. to check what are the EBS volume attach to this instance.
+2. now to check what are the EBS volume attach to this instance.
    select instance > goto storage, here you see volume that already attached.
 
 3. connect to ec2 instance by using ec2 instance connect.
 
-4. sudo su - (to become root)
+4. type sudo su -
 
 5. df -h (it will show what are the volumes already connect)
 
