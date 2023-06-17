@@ -1,10 +1,1 @@
-EC2 > click launch template > select os image > 
-select instance type t2.micro > select keypair > select subnet
-select existing security group > launch template
-select template name > action > select launch instance form template >  
-now click launch instance > select the instance > action > select image and templates 
-> select create image > AMI-by-template > go bydefault > click create image
-13. now, goto AMIs (here, you will see newly created AMI)
 
-
-hence, you have successfully created AMI by Template.
