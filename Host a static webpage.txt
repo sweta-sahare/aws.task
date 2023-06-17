@@ -1,0 +1,13 @@
+s3 > create bucket > bucket name (bucket-static-webhosting)
+acl enabled > 
+
+uncheck Block all public access >  
+ 
+click I acknowledge that the current settings might result in this bucket and the objects within becoming public >
+
+download template from css free template and extract template file > go to object > upload > add files > upload
+
+s3 >  select bucket > go to properties > static website hosting > edit > static website hosting enable > in index document type index.html > save changes > then go to permission > access control list > give list and read permission to everyone > save > go to action and make public
+using acl > copy url and paste in new tab.
+
+successfully host static webpage.
