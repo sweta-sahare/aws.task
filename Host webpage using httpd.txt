@@ -1,0 +1,15 @@
+host webpage using httpd.
+
+ec2 > launch instance > name(httpd-webpage)> select os image
+> instance type (t2.micro) > select key pair > allow firewall 
+create security group & allow http > select advance setting >
+add user data 
+#!/bin/bash
+sudo yum update -y
+sudo yum install httpd -y 
+sudo systemctl start httpd
+sudo systemctl enable httpd
+echo "<h1> welcome tp aws batch $(hostname -f) <h1>" > /var/www/html/index.html
+click on instance id > copy public ip and paste in new tab..
+
+you will see webpage successfully hosted
