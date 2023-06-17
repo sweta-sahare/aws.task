@@ -1,0 +1,12 @@
+create AMI by template
+
+ec2 > launch template > create template 
+> template name(my template) > select amazon machine image >
+instance type (t2.micro) > select key pair > select subnet >
+select existing security group > create launch template
+
+select template > action > select launch instance from template
+>  click on launch instance
+select instance > action > select image and template > then create image > give image name > create image > go to ami 
+
+sucessesfully created AMI by template
