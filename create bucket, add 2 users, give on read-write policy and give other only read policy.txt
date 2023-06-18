@@ -1,0 +1,16 @@
+create bucket, add 2 users, give one user permission of read and write, give oyher user permission of read only
+
+s3 > create bucket > name user-bucket
+IAM > create policy 
+select any service -  s3 and give read and write permission
+click add arn > paste bucket name, add arn
+give policy name - read-write-policy > create policy
+
+create policy > select service - s3 and give read permission
+> click add arn >paste bucket name, add arn
+add arn > give policy name read-policy > create policy
+
+
+IAM > create user > select attach policy > select all types > select customer read write policy > click create user
+
+follow this same steps for create other user and give only read policy.
