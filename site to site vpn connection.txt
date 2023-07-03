@@ -1,0 +1,64 @@
+vpc > create vpc-1 > name - aws-vpc01 > IPv4 CIDR - 10.1.0.0/16
+	     
+             create vpc-2 > name - office-vpc02 > IPv4 CIDR - 10.2.0.0/16
+	 
+             create subnet -1 > AZ -sydney > IPv4 CIDR - 10.1.1.0/24
+	     
+              create subnet -2 > AZ - sydney > IPv4 CIDR - 10.2.2.0/24
+	
+             create IG = name - igw-aws > attach to vpc > aws-vpc01
+	
+             gotp route table – attach internet gateway – aws-vpc01
+	
+ec2 > launch instance > select LINUX-2-AMI – edit network setting > auto assign public - enable > 
+      goto security group - add rule > ICMP all > 0.0.0.0/0 and save rule
+      
+      launch instance > edit network setting > auto assign public > disable > 
+      goto security group - add rule > ICMP all > 0.0.0.0/0 and save rule
+
+VPN > CREATE CUSTOMER GATEWAY -> PUT aws-vpc01 INSTANCE PUBLIC IP > AND CREATE 
+      GOTO TO VIRTUAL PRIVATE GATEWAY > CREATE VIRTUAL PRIVATE GATWAY > OFFICE SITE VPC
+      CREATE VPN CONNECTION > ATTACHED VPN > GIVE STATIC IP AWS SITE IP - 10.1.0.0/16
+      GOING TO VPN > SELECTE OPTION > DOWNLOAD CONFIGURE 
+	
+        take ssh of public instance
+        yum update -y 
+        sudo yum install openswan -y	
+	sudo vim /etc/sysctl.conf >  paste 3 line 
+	net.ipv4.ip_forward = 1
+	net.ipv4.conf.default.rp_filter = 0
+	net.ipv4.conf.default.accept_source_route = 0   
+	sudo sysctl –p
+	sudo systemctl restart network
+	sudo vim /etc/ipsec.conf > open and uncomment last line
+	create new file  sudo vim /etc/ipsec.d/aws.conf > paste conn tunnel 1 block and delete auth-esp option 
+      
+conn Tunnel1
+        authby=secret
+        auto=start
+        left=%defaultroute
+        leftid=13.239.115.119
+        right=13.55.116.116
+        type=tunnel
+        ikelifetime=8h
+        keylife=1h
+        phase2alg=aes128-sha1;modp1024
+        ike=aes128-sha1;modp1024
+        keyingtries=%forever
+        keyexchange=ike
+        leftsubnet=10.1.0.0/16
+        rightsubnet=10.2.0.0/16
+        dpddelay=10
+        dpdtimeout=30
+        dpdaction=restart_by_peer
+
+
+
+
+	create new file sudo vim /etc/ipsec.d/aws.secrets and paste configure line 5  
+	sudo systemctl restart ipsec.service 
+	sudo systemctl restart network
+        goto aws > route table > select office route table > route propagation > enable > save
+	sudo chmod 600 key-name 
+	ssh –i key-name ec2-user@(0ffice site)private-ip
+	ping 10.2.2.183 
